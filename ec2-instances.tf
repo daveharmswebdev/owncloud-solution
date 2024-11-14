@@ -16,7 +16,7 @@ resource "aws_instance" "owncloud-server" {
 }
 
 resource "aws_instance" "mysql-server" {
-  ami           = var.ubuntu_ami
+  ami           = var.private_server_ami
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.private_subnet.id
   key_name      = var.key_pair
