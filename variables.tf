@@ -40,6 +40,11 @@ variable "ubuntu_ami" {
   default     = "ami-005fc0f236362e99f"
 }
 
+variable "private_server_ami" {
+  description = "Private server ami with mysql installed on it"
+  type        = string
+}
+
 variable "key_pair" {
   description = "Key pair for the EC2 instance"
   type        = string
