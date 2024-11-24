@@ -40,6 +40,7 @@ resource "aws_security_group" "private_sg" {
     from_port = 3306
     to_port   = 3306
     protocol  = "tcp"
+    cidr_blocks = ["${aws_instance.owncloud-server.private_ip}/32"]
   }
 
   # bastion setup
@@ -56,4 +57,11 @@ resource "aws_security_group" "private_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "private-server-SG"
+    }
+  )
 }
