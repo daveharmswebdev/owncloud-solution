@@ -135,7 +135,7 @@ resource "aws_subnet" "private_subnet" {
 ### Requirements:
 
 Allows ingress on port 3306 and 22 from the public ec2 instance private IP.
-The public ec2 is a "Bastion Box".
+The public ec2 is a "Bastion Host".
 There is no ingress on port 80.
 
 > ![Private Security Group](private_server_sg.png)
@@ -463,6 +463,20 @@ Notice the state is now "deleted."
 
 ## After
 ![instances terminated](instances_terminated.png)
+
+## Lessons And Observations
+
+As a developer with eight years’ experience, I knew my way around the AWS console, as well as Azure and GCP.  However, that was mostly with Beanstalk, Azure App, and GCP App Engine and the DBs and some light CI/CD work.  So, navigating the through the site and provisioning the resources was not really a challenge.  Strike that, it was a challenge in the sense that I found it to be completely inefficient and tedious, and it was too easy to forget what had been provisioned and what hadn’t been terminated.
+
+I moved to creating resources through the CLI and script writing.  But that was also cumbersome and clumsy.  Script writing is inherently procedural and there is little margin for error and bad timing – too many race conditions.
+
+Terraform was by far the easiest method to use.  I’m a developer consultant that has learned and used professionally multiple languages, so Terraform was just another language.  It provides instant feedback.  It’s declarative, so race conditions are non-existent.  The documentation is outstanding and JetBrains plugin is super helpful.  I will be using Terraform for the remainder of the course.  Furthermore, infrastructure as code provides version control and iterative workflow.  And I could do my work in an IDE (WebStorm) where I am most comfortable.
+
+I would say the assignment was a lot like my job, in that I had to deal with loose requirements and a product owner that was hard to reach.  The Php installation instructions for OwnCloud server were incomplete, they produced an error, and I recall having to add two more packages.  This is far from the worse the thing in the world, and it is not even unexpected.  My conclusion would be that those instructions should not even have been there.  It would have been enough to say “install Owncloud on the public server and point it to a MySQL installation on the private server.  Here are two installation references.  The definition of done is that you navigate to the public IP of the public server via http and you see the config screen.”  For me the assignment was like any ticket that I would have pulled at work.  In fact, I think it would work better if the assignments were created according to “agile” concepts, if they were written like a product backlog item (pbi).  For people who are already in the industry it would be easier, and for people going into the industry it would be more prepatory.
+
+The mentor for the project prep session was great.  That poor man had so much to do and not enough time to do it.  He is right that there is varied experience in the class, even among the “technical” learners.  He came across as a very seasoned senior dev/technician.
+
+As far as the material, it was a great introduction to networking and not too challenging.  I am looking forward to more advanced topics.  I was really impressed with the “Bastion Host” concept.  It was satisfying to see that you could not ssh into the private instance unless you were already ssh-ed into the public bastion host.
 
 
 
